@@ -44,6 +44,22 @@
     </script>
     
     <style>
+        /* Fallback colors — ensures brand colors render even if Tailwind CDN 
+           config loads slowly or fails on slower connections */
+        .text-severan-burgundy { color: #7B2D3B; }
+        .text-severan-burgundyDark { color: #5C1F2A; }
+        .text-severan-burgundyLight { color: #9B4D5B; }
+        .text-severan-gold { color: #C9A227; }
+        .text-severan-goldLight { color: #E5C76B; }
+        .text-severan-sepia { color: #3D2914; }
+        .text-severan-stone { color: #8B8680; }
+        .bg-severan-burgundy { background-color: #7B2D3B; }
+        .bg-severan-burgundyDark { background-color: #5C1F2A; }
+        .bg-severan-parchment { background-color: #F5F1E8; }
+        .bg-severan-parchmentDark { background-color: #E8E0D0; }
+        .border-severan-burgundy { border-color: #7B2D3B; }
+        .border-severan-gold { border-color: #C9A227; }
+        
         /* Parchment Texture */
         body {
             background-color: #F5F1E8;
@@ -178,7 +194,7 @@
     <nav class="fixed top-0 left-0 right-0 z-50 bg-severan-parchment/95 backdrop-blur-md border-b border-severan-burgundy/20">
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <span class="text-3xl">❦</span>
+                <span class="text-3xl text-severan-burgundy">❦</span>
                 <span class="font-serif text-2xl font-bold text-severan-burgundy tracking-wider">SEVERAN</span>
             </div>
             <div class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
@@ -187,7 +203,7 @@
                 <a href="#arsenal" class="hover:text-severan-burgundy transition-colors">THE ARSENAL</a>
                 <a href="#vision" class="hover:text-severan-burgundy transition-colors">THE VISION</a>
             </div>
-            <a href="#scanner" class="severan-btn bg-severan-burgundy text-white px-6 py-2 rounded font-serif text-sm tracking-wider hover:bg-severan-burgundyDark">
+            <a href="#scanner" class="severan-btn bg-severan-burgundy text-white px-3 py-2 md:px-6 md:py-2 rounded font-serif text-xs md:text-sm tracking-wider hover:bg-severan-burgundyDark whitespace-nowrap">
                 ENTER THE SENATE
             </a>
         </div>
@@ -196,15 +212,26 @@
     <!-- Hero Section -->
     <section class="min-h-screen flex items-center justify-center pt-20 px-6">
         <div class="text-center max-w-4xl mx-auto">
-            <div class="mb-8 animate-float">
-                <span class="text-6xl md:text-8xl">🏛</span>
+            <div class="mb-8 animate-float flex justify-center">
+                <svg viewBox="0 0 100 100" width="72" height="72" xmlns="http://www.w3.org/2000/svg" class="md:w-24 md:h-24">
+                    <g fill="#7B2D3B">
+                        <rect x="20" y="10" width="60" height="8" rx="1"/>
+                        <rect x="28" y="22" width="44" height="55"/>
+                        <line x1="35" y1="22" x2="35" y2="77" stroke="#F5F1E8" stroke-width="2"/>
+                        <line x1="43" y1="22" x2="43" y2="77" stroke="#F5F1E8" stroke-width="2"/>
+                        <line x1="50" y1="22" x2="50" y2="77" stroke="#F5F1E8" stroke-width="2"/>
+                        <line x1="57" y1="22" x2="57" y2="77" stroke="#F5F1E8" stroke-width="2"/>
+                        <line x1="65" y1="22" x2="65" y2="77" stroke="#F5F1E8" stroke-width="2"/>
+                        <rect x="18" y="80" width="64" height="9" rx="1"/>
+                    </g>
+                </svg>
             </div>
             
-            <h1 class="font-serif text-5xl md:text-7xl font-bold text-severan-burgundy mb-4 tracking-wider">
+            <h1 class="font-serif text-4xl sm:text-5xl md:text-7xl font-bold text-severan-burgundy mb-4 tracking-wider whitespace-nowrap">
                 ❦ SEVERAN ❦
             </h1>
             
-            <h2 class="font-serif text-2xl md:text-3xl text-severan-gold mb-6 tracking-widest">
+            <h2 class="font-serif text-lg sm:text-2xl md:text-3xl text-severan-gold mb-6 tracking-tight sm:tracking-widest whitespace-nowrap text-center">
                 THE SOVEREIGN RISK ENGINE
             </h2>
             
@@ -232,10 +259,10 @@
     <section id="scanner" class="py-20 px-6">
         <div class="max-w-3xl mx-auto">
             <div class="roman-border bg-white/50 backdrop-blur-sm p-8 md:p-12 rounded-lg">
-                <div class="text-center mb-8">
-                    <h3 class="font-serif text-3xl font-bold text-severan-burgundy mb-2">❦ CONSULT THE ORACLE ❦</h3>
+                <div class="text-center mb-8 w-full">
+                    <h3 class="font-serif text-xl sm:text-2xl md:text-3xl font-bold text-severan-burgundy mb-2 whitespace-nowrap">❦ CONSULT THE ORACLE ❦</h3>
                     <p class="text-severan-stone">Submit a Base network contract — see a sample imperial analysis</p>
-                    <p class="text-xs text-severan-gold font-serif tracking-widest uppercase mt-2">◆ Demo Mode — Live Engine Coming Soon ◆</p>
+                    <p class="w-full text-center text-xs text-severan-gold font-serif tracking-tight sm:tracking-widest uppercase mt-4 whitespace-nowrap">◆ Demo Mode — Live Engine Coming Soon ◆</p>
                 </div>
                 
                 <div class="space-y-4">
@@ -346,10 +373,10 @@
     <!-- The Archives (Personal Scan History) -->
     <section id="archives" class="py-20 px-6 bg-severan-parchmentDark/30">
         <div class="max-w-3xl mx-auto">
-            <div class="text-center mb-10">
-                <h2 class="font-serif text-4xl font-bold text-severan-burgundy mb-4">❦ THE ARCHIVES ❦</h2>
+            <div class="text-center mb-10 w-full">
+                <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-severan-burgundy mb-4 whitespace-nowrap">❦ THE ARCHIVES ❦</h2>
                 <p class="text-severan-stone">Your personal record of consultations</p>
-                <p class="text-xs text-severan-gold font-serif tracking-widest uppercase mt-2">◆ Stored on this device only — not public ◆</p>
+                <p class="w-full text-center text-xs text-severan-gold font-serif tracking-tight sm:tracking-widest uppercase mt-4 whitespace-nowrap">◆ Stored on this device only — not public ◆</p>
             </div>
 
             <div id="archivesEmpty" class="roman-border bg-white/40 p-8 rounded-lg text-center">
@@ -388,7 +415,20 @@
                 
                 <!-- Card 2 -->
                 <div class="roman-border bg-white/40 p-8 rounded-lg text-center hover:bg-white/60 transition-all hover:transform hover:-translate-y-2">
-                    <div class="text-5xl mb-4">🏛</div>
+                    <div class="mb-4 flex justify-center">
+                        <svg viewBox="0 0 100 100" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
+                            <g fill="#7B2D3B">
+                                <rect x="20" y="10" width="60" height="8" rx="1"/>
+                                <rect x="28" y="22" width="44" height="55"/>
+                                <line x1="35" y1="22" x2="35" y2="77" stroke="#F5F1E8" stroke-width="2"/>
+                                <line x1="43" y1="22" x2="43" y2="77" stroke="#F5F1E8" stroke-width="2"/>
+                                <line x1="50" y1="22" x2="50" y2="77" stroke="#F5F1E8" stroke-width="2"/>
+                                <line x1="57" y1="22" x2="57" y2="77" stroke="#F5F1E8" stroke-width="2"/>
+                                <line x1="65" y1="22" x2="65" y2="77" stroke="#F5F1E8" stroke-width="2"/>
+                                <rect x="18" y="80" width="64" height="9" rx="1"/>
+                            </g>
+                        </svg>
+                    </div>
                     <h3 class="font-serif text-xl font-bold text-severan-burgundy mb-3">BUILT FOR THE EMPIRE</h3>
                     <p class="text-sm text-severan-sepia/80 mb-2 font-bold text-severan-gold">Base Network Native</p>
                     <p class="text-severan-stone text-sm leading-relaxed">
@@ -489,7 +529,7 @@
     <section id="arsenal" class="py-20 px-6 bg-severan-parchmentDark/30">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="font-serif text-4xl font-bold text-severan-burgundy mb-4">❦ THE LEGION'S ARSENAL ❦</h2>
+                <h2 class="font-serif text-xl sm:text-2xl md:text-4xl font-bold text-severan-burgundy mb-4 whitespace-nowrap">❦ THE LEGION'S ARSENAL ❦</h2>
                 <p class="text-xl text-severan-stone">Capabilities of the Risk Engine</p>
             </div>
             
@@ -541,7 +581,7 @@
     <section class="py-20 px-6">
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-12">
-                <h2 class="font-serif text-4xl font-bold text-severan-burgundy mb-4">❦ THE IMPERIUM SCORE ❦</h2>
+                <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-severan-burgundy mb-4 whitespace-nowrap">❦ THE IMPERIUM SCORE ❦</h2>
                 <p class="text-xl text-severan-stone">Understanding Your Security Rating</p>
             </div>
             
@@ -617,7 +657,7 @@
     <!-- The Vision -->
     <section id="vision" class="py-20 px-6 bg-severan-burgundy text-white">
         <div class="max-w-3xl mx-auto text-center">
-            <h2 class="font-serif text-4xl font-bold mb-6">❦ THE EMPEROR'S VISION ❦</h2>
+            <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold mb-6 whitespace-nowrap">❦ THE EMPEROR'S VISION ❦</h2>
             
             <p class="text-xl font-serif text-severan-goldLight mb-6 italic">
                 "In the age of decentralized finance, security is sovereignty."
