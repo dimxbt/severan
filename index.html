@@ -221,7 +221,7 @@
                 <a href="#scanner" class="severan-btn bg-severan-burgundy text-white px-8 py-4 rounded font-serif text-lg tracking-wider hover:bg-severan-burgundyDark animate-pulse-glow">
                     ◆ ENTER THE SENATE ◆
                 </a>
-                <a href="#mandate" class="severan-btn border-2 border-severan-burgundy text-severan-burgundy px-8 py-4 rounded font-serif text-lg tracking-wider hover:bg-severan-burgundy hover:text-white">
+                <a href="#archives" class="severan-btn border-2 border-severan-burgundy text-severan-burgundy px-8 py-4 rounded font-serif text-lg tracking-wider hover:bg-severan-burgundy hover:text-white">
                     View The Archives →
                 </a>
             </div>
@@ -234,7 +234,8 @@
             <div class="roman-border bg-white/50 backdrop-blur-sm p-8 md:p-12 rounded-lg">
                 <div class="text-center mb-8">
                     <h3 class="font-serif text-3xl font-bold text-severan-burgundy mb-2">❦ CONSULT THE ORACLE ❦</h3>
-                    <p class="text-severan-stone">Submit a Base network contract for imperial analysis</p>
+                    <p class="text-severan-stone">Submit a Base network contract — see a sample imperial analysis</p>
+                    <p class="text-xs text-severan-gold font-serif tracking-widest uppercase mt-2">◆ Demo Mode — Live Engine Coming Soon ◆</p>
                 </div>
                 
                 <div class="space-y-4">
@@ -254,7 +255,24 @@
                 
                 <!-- Loading State -->
                 <div id="loadingState" class="hidden mt-8 text-center">
-                    <div class="laurel-spinner text-6xl mb-4">🌿</div>
+                    <div class="laurel-spinner mb-4 flex justify-center">
+                        <svg viewBox="0 0 100 100" width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+                            <g fill="#C9A227">
+                                <ellipse cx="30" cy="25" rx="8" ry="4" transform="rotate(-30 30 25)"/>
+                                <ellipse cx="25" cy="38" rx="8" ry="4" transform="rotate(-15 25 38)"/>
+                                <ellipse cx="22" cy="52" rx="8" ry="4" transform="rotate(0 22 52)"/>
+                                <ellipse cx="25" cy="66" rx="8" ry="4" transform="rotate(15 25 66)"/>
+                                <ellipse cx="32" cy="78" rx="8" ry="4" transform="rotate(35 32 78)"/>
+                                <path d="M 50 20 Q 20 30 18 52 Q 18 72 38 84" stroke="#C9A227" stroke-width="2.5" fill="none"/>
+                                <ellipse cx="70" cy="25" rx="8" ry="4" transform="rotate(30 70 25)"/>
+                                <ellipse cx="75" cy="38" rx="8" ry="4" transform="rotate(15 75 38)"/>
+                                <ellipse cx="78" cy="52" rx="8" ry="4" transform="rotate(0 78 52)"/>
+                                <ellipse cx="75" cy="66" rx="8" ry="4" transform="rotate(-15 75 66)"/>
+                                <ellipse cx="68" cy="78" rx="8" ry="4" transform="rotate(-35 68 78)"/>
+                                <path d="M 50 20 Q 80 30 82 52 Q 82 72 62 84" stroke="#C9A227" stroke-width="2.5" fill="none"/>
+                            </g>
+                        </svg>
+                    </div>
                     <p class="font-serif text-severan-burgundy text-lg mb-2">Consulting the Oracle...</p>
                     <p class="text-severan-stone text-sm">The augurs are examining the contract</p>
                 </div>
@@ -263,6 +281,7 @@
                 <div id="resultState" class="hidden mt-8">
                     <div class="text-center mb-6">
                         <h4 class="font-serif text-2xl text-severan-burgundy">❦ EDICT OF ANALYSIS ❦</h4>
+                        <p class="text-xs text-severan-stone mt-1">Sample output — illustrative only</p>
                     </div>
                     
                     <div class="flex items-center justify-center mb-8">
@@ -283,13 +302,22 @@
                     
                     <div class="bg-severan-burgundy/10 border border-severan-burgundy/30 rounded-lg p-4 mb-4">
                         <div class="flex items-center gap-2 mb-2">
-                            <span class="text-severan-burgundy">🚨</span>
-                            <span class="font-serif font-bold text-severan-burgundy">FERRUM — Iron Alert</span>
+                            <svg viewBox="0 0 100 100" width="18" height="18" xmlns="http://www.w3.org/2000/svg">
+                                <g stroke="#7B2D3B" stroke-width="9" stroke-linecap="round">
+                                    <line x1="20" y1="20" x2="75" y2="75"/>
+                                    <line x1="20" y1="20" x2="30" y2="14" stroke-width="11"/>
+                                    <circle cx="78" cy="78" r="8" fill="#7B2D3B" stroke="none"/>
+                                    <line x1="80" y1="20" x2="25" y2="75"/>
+                                    <line x1="80" y1="20" x2="70" y2="14" stroke-width="11"/>
+                                    <circle cx="22" cy="78" r="8" fill="#7B2D3B" stroke="none"/>
+                                </g>
+                            </svg>
+                            <span class="font-serif font-bold text-severan-burgundy" id="alertTitle">FERRUM — Iron Alert</span>
                         </div>
-                        <p class="text-sm text-severan-sepia">Critical security failures detected. Deployment strongly discouraged.</p>
+                        <p class="text-sm text-severan-sepia" id="alertDesc">Critical security failures detected. Deployment strongly discouraged.</p>
                     </div>
                     
-                    <div class="space-y-3">
+                    <div class="space-y-3" id="findingsList">
                         <div class="flex items-start gap-3 p-3 bg-white/50 rounded border-l-4 border-severan-burgundy">
                             <span class="text-severan-burgundy font-bold">⚔</span>
                             <div>
@@ -298,7 +326,12 @@
                             </div>
                         </div>
                         <div class="flex items-start gap-3 p-3 bg-white/50 rounded border-l-4 border-severan-gold">
-                            <span class="text-severan-gold font-bold">⚠</span>
+                            <svg viewBox="0 0 100 100" width="18" height="18" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M50 8 L82 20 L82 48 Q82 75 50 92 Q18 75 18 48 L18 20 Z" 
+                                      fill="none" stroke="#C9A227" stroke-width="8" stroke-linejoin="round"/>
+                                <path d="M50 20 L42 45 L52 50 L44 78" 
+                                      fill="none" stroke="#C9A227" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                             <div>
                                 <p class="font-serif text-sm font-bold text-severan-sepia">Centralized Ownership</p>
                                 <p class="text-xs text-severan-stone">Single owner has unlimited minting privileges</p>
@@ -306,6 +339,29 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Archives (Personal Scan History) -->
+    <section id="archives" class="py-20 px-6 bg-severan-parchmentDark/30">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="font-serif text-4xl font-bold text-severan-burgundy mb-4">❦ THE ARCHIVES ❦</h2>
+                <p class="text-severan-stone">Your personal record of consultations</p>
+                <p class="text-xs text-severan-gold font-serif tracking-widest uppercase mt-2">◆ Stored on this device only — not public ◆</p>
+            </div>
+
+            <div id="archivesEmpty" class="roman-border bg-white/40 p-8 rounded-lg text-center">
+                <p class="text-severan-stone text-sm">No consultations yet. Submit a contract above to begin your record.</p>
+            </div>
+
+            <div id="archivesList" class="hidden space-y-3"></div>
+
+            <div class="text-center mt-6">
+                <button onclick="clearArchives()" id="clearArchivesBtn" class="hidden text-xs text-severan-stone hover:text-severan-burgundy underline">
+                    Clear my archive
+                </button>
             </div>
         </div>
     </section>
@@ -343,7 +399,24 @@
                 
                 <!-- Card 3 -->
                 <div class="roman-border bg-white/40 p-8 rounded-lg text-center hover:bg-white/60 transition-all hover:transform hover:-translate-y-2">
-                    <div class="text-5xl mb-4">🌿</div>
+                    <div class="mb-4 flex justify-center">
+                        <svg viewBox="0 0 100 100" width="56" height="56" xmlns="http://www.w3.org/2000/svg">
+                            <g fill="#C9A227">
+                                <ellipse cx="30" cy="25" rx="8" ry="4" transform="rotate(-30 30 25)"/>
+                                <ellipse cx="25" cy="38" rx="8" ry="4" transform="rotate(-15 25 38)"/>
+                                <ellipse cx="22" cy="52" rx="8" ry="4" transform="rotate(0 22 52)"/>
+                                <ellipse cx="25" cy="66" rx="8" ry="4" transform="rotate(15 25 66)"/>
+                                <ellipse cx="32" cy="78" rx="8" ry="4" transform="rotate(35 32 78)"/>
+                                <path d="M 50 20 Q 20 30 18 52 Q 18 72 38 84" stroke="#C9A227" stroke-width="2.5" fill="none"/>
+                                <ellipse cx="70" cy="25" rx="8" ry="4" transform="rotate(30 70 25)"/>
+                                <ellipse cx="75" cy="38" rx="8" ry="4" transform="rotate(15 75 38)"/>
+                                <ellipse cx="78" cy="52" rx="8" ry="4" transform="rotate(0 78 52)"/>
+                                <ellipse cx="75" cy="66" rx="8" ry="4" transform="rotate(-15 75 66)"/>
+                                <ellipse cx="68" cy="78" rx="8" ry="4" transform="rotate(-35 68 78)"/>
+                                <path d="M 50 20 Q 80 30 82 52 Q 82 72 62 84" stroke="#C9A227" stroke-width="2.5" fill="none"/>
+                            </g>
+                        </svg>
+                    </div>
                     <h3 class="font-serif text-xl font-bold text-severan-burgundy mb-3">EVER-VIGILANT</h3>
                     <p class="text-sm text-severan-sepia/80 mb-2 font-bold text-severan-gold">24/7 Risk Monitoring</p>
                     <p class="text-severan-stone text-sm leading-relaxed">
@@ -422,7 +495,15 @@
             
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="bg-white/40 p-6 rounded-lg border-l-4 border-severan-burgundy">
-                    <h3 class="font-serif text-lg font-bold text-severan-burgundy mb-2">🛡 Reentrancy Detection</h3>
+                    <h3 class="font-serif text-lg font-bold text-severan-burgundy mb-2 flex items-center gap-2">
+                        <svg viewBox="0 0 100 100" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50 8 L82 20 L82 48 Q82 75 50 92 Q18 75 18 48 L18 20 Z" 
+                                  fill="none" stroke="#7B2D3B" stroke-width="7" stroke-linejoin="round"/>
+                            <path d="M50 20 L42 45 L52 50 L44 78" 
+                                  fill="none" stroke="#7B2D3B" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Reentrancy Detection
+                    </h3>
                     <p class="text-severan-stone text-sm leading-relaxed">
                         Identify recursive call vulnerabilities before they become exploits. 
                         The engine traces external calls with senator-level scrutiny.
@@ -467,7 +548,22 @@
             <div class="grid sm:grid-cols-2 gap-6">
                 <div class="roman-border bg-gradient-to-br from-green-50 to-green-100/50 p-6 rounded-lg">
                     <div class="flex items-center gap-3 mb-3">
-                        <span class="text-2xl">🌿</span>
+                        <svg viewBox="0 0 100 100" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
+                            <g fill="#C9A227">
+                                <ellipse cx="30" cy="25" rx="8" ry="4" transform="rotate(-30 30 25)"/>
+                                <ellipse cx="25" cy="38" rx="8" ry="4" transform="rotate(-15 25 38)"/>
+                                <ellipse cx="22" cy="52" rx="8" ry="4" transform="rotate(0 22 52)"/>
+                                <ellipse cx="25" cy="66" rx="8" ry="4" transform="rotate(15 25 66)"/>
+                                <ellipse cx="32" cy="78" rx="8" ry="4" transform="rotate(35 32 78)"/>
+                                <path d="M 50 20 Q 20 30 18 52 Q 18 72 38 84" stroke="#C9A227" stroke-width="2.5" fill="none"/>
+                                <ellipse cx="70" cy="25" rx="8" ry="4" transform="rotate(30 70 25)"/>
+                                <ellipse cx="75" cy="38" rx="8" ry="4" transform="rotate(15 75 38)"/>
+                                <ellipse cx="78" cy="52" rx="8" ry="4" transform="rotate(0 78 52)"/>
+                                <ellipse cx="75" cy="66" rx="8" ry="4" transform="rotate(-15 75 66)"/>
+                                <ellipse cx="68" cy="78" rx="8" ry="4" transform="rotate(-35 68 78)"/>
+                                <path d="M 50 20 Q 80 30 82 52 Q 82 72 62 84" stroke="#C9A227" stroke-width="2.5" fill="none"/>
+                            </g>
+                        </svg>
                         <span class="font-serif font-bold text-green-800">AUREUS — Golden</span>
                     </div>
                     <p class="text-sm text-severan-stone">Score: 0-25</p>
@@ -476,7 +572,12 @@
                 
                 <div class="roman-border bg-gradient-to-br from-yellow-50 to-yellow-100/50 p-6 rounded-lg">
                     <div class="flex items-center gap-3 mb-3">
-                        <span class="text-2xl">⚠</span>
+                        <svg viewBox="0 0 100 100" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50 8 L82 20 L82 48 Q82 75 50 92 Q18 75 18 48 L18 20 Z" 
+                                  fill="none" stroke="#92660E" stroke-width="6" stroke-linejoin="round"/>
+                            <path d="M50 20 L42 45 L52 50 L44 78" 
+                                  fill="none" stroke="#92660E" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                         <span class="font-serif font-bold text-yellow-800">ARGENTUM — Silver</span>
                     </div>
                     <p class="text-sm text-severan-stone">Score: 26-50</p>
@@ -494,7 +595,16 @@
                 
                 <div class="roman-border bg-gradient-to-br from-red-50 to-red-100/50 p-6 rounded-lg">
                     <div class="flex items-center gap-3 mb-3">
-                        <span class="text-2xl">🚨</span>
+                        <svg viewBox="0 0 100 100" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
+                            <g stroke="#7B2D3B" stroke-width="7" stroke-linecap="round">
+                                <line x1="20" y1="20" x2="75" y2="75"/>
+                                <line x1="20" y1="20" x2="30" y2="14" stroke-width="9"/>
+                                <circle cx="78" cy="78" r="7" fill="#7B2D3B" stroke="none"/>
+                                <line x1="80" y1="20" x2="25" y2="75"/>
+                                <line x1="80" y1="20" x2="70" y2="14" stroke-width="9"/>
+                                <circle cx="22" cy="78" r="7" fill="#7B2D3B" stroke="none"/>
+                            </g>
+                        </svg>
                         <span class="font-serif font-bold text-red-800">FERRUM — Iron</span>
                     </div>
                     <p class="text-sm text-severan-stone">Score: 76-100</p>
@@ -539,45 +649,26 @@
             
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 <div>
-                    <div class="font-serif text-4xl font-bold text-severan-burgundy">⚔</div>
-                    <div class="text-3xl font-bold text-severan-sepia mt-2">10K+</div>
-                    <div class="text-sm text-severan-stone">Contracts Analyzed</div>
+                    <div class="font-serif text-4xl font-bold text-severan-burgundy">❦</div>
+                    <div class="text-xl font-bold text-severan-sepia mt-0">DEMO</div>
+                    <div class="text-sm text-severan-stone">Live Engine Soon</div>
                 </div>
                 <div>
-                    <div class="font-serif text-4xl font-bold text-severan-burgundy">🌿</div>
-                    <div class="text-3xl font-bold text-severan-sepia mt-2">500+</div>
-                    <div class="text-sm text-severan-stone">Critical Vulnerabilities</div>
+                    <img src="data:image/png;base64,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" alt="Base" class="w-10 h-10 mx-auto" style="width:2.5rem;height:2.5rem;display:block;margin-left:auto;margin-right:auto;" />
+                    <div class="text-xl font-bold text-severan-sepia mt-0">BASE</div>
+                    <div class="text-sm text-severan-stone">Native Network Integration</div>
                 </div>
                 <div>
-                    <div class="font-serif text-4xl font-bold text-severan-burgundy">🏛</div>
-                    <div class="text-3xl font-bold text-severan-sepia mt-2">$2B+</div>
-                    <div class="text-sm text-severan-stone">TVL Protected</div>
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAGQCAYAAACAvzbMAAAqLElEQVR4nO3dP2xb593o8R8vOoWmNElAictUHa4CRLpLVQd4lSFMu8R/VMABJEZvh6iDqcK6VYGY8hRB1HUmiwpQFTIqeogypIokoAZeyVaWJvQQDVH1LqUChHcoGxY0IKGDxDAdzx2k4/qP+O85Dw+fc873A3RobB8em/bzPX+fJ/Sv6j8FAIBW/Y9O7wAAwJsICABACQEBACghIAAAJQQEAKCEgAAAlBAQAIASAgIAUEJAAABKCAgAQAkBAQAoISAAACUEBACghIAAAJQQEACAEgICAFBCQAAASggIAEAJAQEAKCEgAAAlBAQAoISAAACUEBAAgBICAgBQQkAAAEoICABACQEBACghIAAAJQQEAKCEgAAAlBAQAIASAgIAUEJAAABKCAgAQAkBAQAoISAAACUEBACghIAAAJQQEACAEgICAFBCQAAASggIAEAJAQEAKCEgAAAlBAQAoISAAACUEBAAgBICAgBQQkAAAEoICABACQEBACghIAAAJQQEAKCEgAAAlBAQAIASAgIAUEJAAABKCAgAQAkBAQAoISAAACUEBACghIAAAJQQEACAEgICAFBCQAAASggIAEAJAQEAKCEgAAAlBAQAoISAAACUEBAAgBICAgBQQkAAAEoICABACQEBACghIAAAJQQEAKCEgAAAlBAQAIASAgJPW9/OWdPzy1an98OJ6fm71vp2ztO/BwTTDzq9A4CqndyeNZ1etv+vtTQ3Ferk/qiYXVy11re+kPWtL6TrQti6FL/oud8DgoszEHhSvlC0puefxEPWt3KykN301FF8JrtpZdcePPn/v51flnyh6KnfA4KNgMBz8oWidW0yLSeV6jP/PZPd8ExEMtlNayG78cx/O65U5e3JNBGBZxAQeEqteNi8EJHz4mEjIvASAgLPKJUPrYnUnZrxsJkckXrxsB1XqjKRuiOl8qGRvwfARkDgCaXyoXXt12kplY+a+vkmRqSZeNhK5SM5/f0SEZiLgMB4rcbDlsluSHbtoREDcCvxsBERmI6AwGiq8bDNLn4knX7HYn07VzceXZFwzR8jIjAZAYGxmo3HauZW3UF4Or3csYisb+eeflflBV2RsCzNTdXdBhGBqQgIjNTKmcdg/4/k48xM3Z/TiYg0ioeIyP2VtAz2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Z/KFojWRWnA0yCRG4jJzfVRi0d6W/3GXyofW9PxdR4/s2o/q+v1pKxWl8pE1kbrj6IW9WLTn7M+39e/XXqu+lXXqn9cVCcvv56Z42soHCIgPlcpH1sK9DXF676GVkOzuH1ifbuccf6b9JA5Ll9Znrz/uRGIkLu9cjTd1lndSqcrK2kMru/bA0VnH8NCALPGeh28QEB87vQex6ehsRERksL9PhocGZOCVvifreRxXvpfj76py8E1Rdh7tOf6MWLRXluZucMmqBTouaYmcnpEMDw3IQH+f/O+nltj99vGRHHxTlPzp+0KOPqMrEpaZAD5J53cExOd0nY200+nAcpWzDkWZ7Ib16fYjxyFpF846/IuABISJITm9RDbGwKKBid/v8NCAzPhw0kv8GwEJmE4PNF2RsLxzNS7J8SuEow3s73d3/+uOnZEQjuAgIAFVKh9Zu/99INk/PtA2BXc9w0MDcil+Ud65+iaXqlyyvp2z1rdy8qUL07rHor3yztU3uBQZMAQEUiofWTuPvpLPcnvy10JRy6JPXZGwvD70qgwPDRCNDrMPFnZyX0m+8HctZyZdkbAM9vc9+Y452wgmAoIX5AtFq1Q+PL0M8vhQTirfy7ePj14YeLoiYemOhKX7wksy+EqfdF0Iy8ArffL6T15VescA7rC/33yhKAeF4pPv97wVI2PRXum+8JLEoj0S+2GvDLzSJ4P9ffLyD3s5KAABAQCoYS4sAIASAgIAUEJAAABKCAgAQAkBAQAoISAAACUEBACghIAAAJQQEACAEgICAFBCQAAASggIAEAJAQEAKCEgAAAlBAQAoISAAACUEBAAgBICAgBQQkAAAEoICABACQEBACghIAAAJQQEAKCEgAAAlBAQAIASAgIAUEJAAABKCAgAQAkBAQAoISAAACUEBACghIAAAJQQEACAEgICAFBCQAAASggIAEAJAQEAKCEgAAAlBAQAoISAAACUEBAAgBICAgBQQkAAAEoICABACQEBACghIAAAJQQEAKCEgAAAlBAQAIASAgIAUEJAAABKCAgAQAkBAQAoISAAACUEBACghIAAAJQQEACAEgICAFBCQAAASggIAEAJAQEAKCEgAAAlBAQAoISAAACUEBAAgBICAgBQQkAAAEoICABACQEBACghIAAAJQQEAKCEgAAAlBAQAIASAgIAUEJAAABKCAgAQAkBAQAoISAAACUEBACghIAAAJQQEACAEgICAFBCQAAASv4/j/KJoI/lLosAAAAASUVORK5CYII=" alt="Venice AI" class="w-10 h-10 mx-auto" style="width:2.5rem;height:2.5rem;display:block;margin-left:auto;margin-right:auto;" />
+                    <div class="text-xl font-bold text-severan-sepia mt-0">VENICE AI</div>
+                    <div class="text-sm text-severan-stone">Powered By</div>
                 </div>
                 <div>
-                    <div class="font-serif text-4xl font-bold text-severan-burgundy">⚡</div>
-                    <div class="text-3xl font-bold text-severan-sepia mt-2">24/7</div>
-                    <div class="text-sm text-severan-stone">Vigilance Maintained</div>
+                    <div class="font-serif text-4xl font-bold text-severan-burgundy">❦</div>
+                    <div class="text-xl font-bold text-severan-sepia mt-0">24/7</div>
+                    <div class="text-sm text-severan-stone">Real-time Scanning</div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- CTA / Vision -->
-    <section class="py-20 px-6 bg-severan-burgundy">
-        <div class="max-w-3xl mx-auto text-center">
-            <h2 class="font-serif text-4xl font-bold text-white mb-6">❦ THE EMPEROR'S VISION ❦</h2>
-            <p class="font-serif text-lg italic text-severan-gold mb-8 tracking-wide">
-                "In the age of decentralized finance, security is sovereignty."
-            </p>
-            <p class="text-severan-parchment/90 mb-6 leading-relaxed">
-                Severan draws its name from the Severan dynasty — rulers who understood that true power comes from stability, wisdom, and unwavering vigilance.
-            </p>
-            <p class="text-severan-parchment/90 mb-8 leading-relaxed">
-                We believe every protocol deserves imperial-grade security analysis. No gatekeepers. No paywalls for basic protection. Just pure, uncensored intelligence powered by Venice AI.
-            </p>
-            <p class="font-serif text-severan-gold tracking-widest text-sm uppercase">
-                Built on Base. Secured by Severan. Ruled by you.
-            </p>
         </div>
     </section>
 
@@ -610,6 +701,104 @@
 
     <!-- JavaScript -->
     <script>
+        // Sample analysis data — illustrative outputs from the Severan engine.
+        // Demo mode: rotates through pre-generated examples instead of live API calls.
+        const sampleResults = [
+            {
+                score: 78,
+                tier: 'FERRUM — Iron',
+                tierDesc: 'Critical failures. Deployment strongly discouraged.',
+                color: '#7B2D3B',
+                findings: [
+                    {
+                        icon: 'sword',
+                        title: 'Reentrancy Vulnerability',
+                        desc: 'External call detected before state update in withdraw() function'
+                    },
+                    {
+                        icon: 'shield',
+                        title: 'Centralized Ownership',
+                        desc: 'Single owner has unlimited minting privileges'
+                    }
+                ]
+            },
+            {
+                score: 34,
+                tier: 'ARGENTUM — Silver',
+                tierDesc: 'Minor issues. Review recommended before deployment.',
+                color: '#92660E',
+                findings: [
+                    {
+                        icon: 'shield',
+                        title: 'Upgradeable Proxy Pattern',
+                        desc: 'Admin can modify contract logic post-deployment without timelock'
+                    },
+                    {
+                        icon: 'sword',
+                        title: 'Missing Event Emissions',
+                        desc: 'Critical state changes are not logged for off-chain monitoring'
+                    }
+                ]
+            },
+            {
+                score: 12,
+                tier: 'AUREUS — Golden',
+                tierDesc: 'Exemplary security. The Senate approves. Proceed with confidence.',
+                color: '#3F6212',
+                findings: [
+                    {
+                        icon: 'shield',
+                        title: 'Timelock-Protected Admin',
+                        desc: 'All privileged functions require 48-hour timelock delay'
+                    },
+                    {
+                        icon: 'sword',
+                        title: 'No External Calls in Critical Paths',
+                        desc: 'State changes are isolated from reentrancy-prone patterns'
+                    }
+                ]
+            },
+            {
+                score: 58,
+                tier: 'AER — Bronze',
+                tierDesc: 'Significant vulnerabilities. Immediate attention required.',
+                color: '#9A3412',
+                findings: [
+                    {
+                        icon: 'sword',
+                        title: 'Oracle Manipulation Risk',
+                        desc: 'Price feed relies on a single on-chain source with no fallback'
+                    },
+                    {
+                        icon: 'shield',
+                        title: 'Unbounded Loop',
+                        desc: 'Array iteration in distributeRewards() may exceed block gas limit'
+                    }
+                ]
+            }
+        ];
+
+        function iconSVG(type, color) {
+            if (type === 'sword') {
+                return `<svg viewBox="0 0 100 100" width="18" height="18" xmlns="http://www.w3.org/2000/svg">
+                    <g stroke="${color}" stroke-width="9" stroke-linecap="round">
+                        <line x1="20" y1="20" x2="75" y2="75"/>
+                        <line x1="20" y1="20" x2="30" y2="14" stroke-width="11"/>
+                        <circle cx="78" cy="78" r="8" fill="${color}" stroke="none"/>
+                        <line x1="80" y1="20" x2="25" y2="75"/>
+                        <line x1="80" y1="20" x2="70" y2="14" stroke-width="11"/>
+                        <circle cx="22" cy="78" r="8" fill="${color}" stroke="none"/>
+                    </g>
+                </svg>`;
+            }
+            return `<svg viewBox="0 0 100 100" width="18" height="18" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 8 L82 20 L82 48 Q82 75 50 92 Q18 75 18 48 L18 20 Z" 
+                      fill="none" stroke="${color}" stroke-width="8" stroke-linejoin="round"/>
+                <path d="M50 20 L42 45 L52 50 L44 78" 
+                      fill="none" stroke="${color}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>`;
+        }
+
         function startScan() {
             const input = document.getElementById('contractInput');
             const loading = document.getElementById('loadingState');
@@ -625,22 +814,119 @@
             loading.classList.remove('hidden');
             results.classList.add('hidden');
             btn.disabled = true;
-            btn.innerHTML = '<span class="animate-spin">🌿</span> Consulting...';
+            btn.innerHTML = '<span class="animate-spin" style="display:inline-flex"><svg viewBox="0 0 100 100" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><g fill="#F5F1E8"><ellipse cx="30" cy="25" rx="8" ry="4" transform="rotate(-30 30 25)"/><ellipse cx="25" cy="38" rx="8" ry="4" transform="rotate(-15 25 38)"/><ellipse cx="22" cy="52" rx="8" ry="4" transform="rotate(0 22 52)"/><ellipse cx="25" cy="66" rx="8" ry="4" transform="rotate(15 25 66)"/><ellipse cx="32" cy="78" rx="8" ry="4" transform="rotate(35 32 78)"/><path d="M 50 20 Q 20 30 18 52 Q 18 72 38 84" stroke="#F5F1E8" stroke-width="2.5" fill="none"/><ellipse cx="70" cy="25" rx="8" ry="4" transform="rotate(30 70 25)"/><ellipse cx="75" cy="38" rx="8" ry="4" transform="rotate(15 75 38)"/><ellipse cx="78" cy="52" rx="8" ry="4" transform="rotate(0 78 52)"/><ellipse cx="75" cy="66" rx="8" ry="4" transform="rotate(-15 75 66)"/><ellipse cx="68" cy="78" rx="8" ry="4" transform="rotate(-35 68 78)"/><path d="M 50 20 Q 80 30 82 52 Q 82 72 62 84" stroke="#F5F1E8" stroke-width="2.5" fill="none"/></g></svg></span> Consulting...';
             
-            // Simulate scan (3 seconds)
+            // Pick a random sample result (demo mode — no live API call)
+            const sample = sampleResults[Math.floor(Math.random() * sampleResults.length)];
+            
             setTimeout(() => {
                 loading.classList.add('hidden');
                 results.classList.remove('hidden');
                 btn.disabled = false;
                 btn.innerHTML = '<span>◆</span><span>CONSULT THE ORACLE</span><span>◆</span>';
                 
-                // Animate risk circle
+                // Populate result fields
+                document.getElementById('riskScore').textContent = sample.score;
+                document.getElementById('alertTitle').textContent = sample.tier;
+                document.getElementById('alertDesc').textContent = sample.tierDesc;
+                document.getElementById('riskCircle').style.stroke = sample.color;
+                
+                const findingsList = document.getElementById('findingsList');
+                findingsList.innerHTML = sample.findings.map(f => `
+                    <div class="flex items-start gap-3 p-3 bg-white/50 rounded border-l-4" style="border-color: ${sample.color}">
+                        ${iconSVG(f.icon, sample.color)}
+                        <div>
+                            <p class="font-serif text-sm font-bold text-severan-sepia">${f.title}</p>
+                            <p class="text-xs text-severan-stone">${f.desc}</p>
+                        </div>
+                    </div>
+                `).join('');
+                
+                // Animate risk circle based on score
+                const offset = 251.2 - (251.2 * sample.score / 100);
                 setTimeout(() => {
-                    document.getElementById('riskCircle').style.strokeDashoffset = '62.8';
+                    document.getElementById('riskCircle').style.strokeDashoffset = offset;
                 }, 100);
+                
+                // Save this consultation to the local archive
+                saveToArchive(input.value, sample);
             }, 3000);
         }
         
+        // ---- The Archives (local scan history) ----
+        const ARCHIVE_KEY = 'severan_archives';
+        
+        function saveToArchive(address, sample) {
+            const archive = JSON.parse(localStorage.getItem(ARCHIVE_KEY) || '[]');
+            archive.unshift({
+                address: address,
+                tier: sample.tier,
+                score: sample.score,
+                color: sample.color,
+                timestamp: new Date().toISOString()
+            });
+            // keep only the most recent 20 entries
+            localStorage.setItem(ARCHIVE_KEY, JSON.stringify(archive.slice(0, 20)));
+            renderArchives();
+        }
+        
+        function clearArchives() {
+            localStorage.removeItem(ARCHIVE_KEY);
+            renderArchives();
+        }
+        
+        function shortenAddress(addr) {
+            if (addr.length <= 12) return addr;
+            return addr.slice(0, 6) + '…' + addr.slice(-4);
+        }
+        
+        function timeAgo(isoString) {
+            const seconds = Math.floor((new Date() - new Date(isoString)) / 1000);
+            if (seconds < 60) return 'just now';
+            const minutes = Math.floor(seconds / 60);
+            if (minutes < 60) return minutes + 'm ago';
+            const hours = Math.floor(minutes / 60);
+            if (hours < 24) return hours + 'h ago';
+            const days = Math.floor(hours / 24);
+            return days + 'd ago';
+        }
+        
+        function renderArchives() {
+            const archive = JSON.parse(localStorage.getItem(ARCHIVE_KEY) || '[]');
+            const emptyState = document.getElementById('archivesEmpty');
+            const list = document.getElementById('archivesList');
+            const clearBtn = document.getElementById('clearArchivesBtn');
+            
+            if (archive.length === 0) {
+                emptyState.classList.remove('hidden');
+                list.classList.add('hidden');
+                clearBtn.classList.add('hidden');
+                return;
+            }
+            
+            emptyState.classList.add('hidden');
+            list.classList.remove('hidden');
+            clearBtn.classList.remove('hidden');
+            
+            list.innerHTML = archive.map(entry => `
+                <div class="roman-border bg-white/40 p-4 rounded-lg flex items-center justify-between gap-4">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <div class="w-3 h-3 rounded-full flex-shrink-0" style="background-color: ${entry.color}"></div>
+                        <div class="min-w-0">
+                            <p class="font-mono text-sm text-severan-sepia truncate">${shortenAddress(entry.address)}</p>
+                            <p class="text-xs text-severan-stone">${entry.tier}</p>
+                        </div>
+                    </div>
+                    <div class="text-right flex-shrink-0">
+                        <p class="font-serif font-bold text-severan-burgundy">${entry.score}</p>
+                        <p class="text-xs text-severan-stone">${timeAgo(entry.timestamp)}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Load archive on page start
+        renderArchives();
         // Smooth scroll for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
